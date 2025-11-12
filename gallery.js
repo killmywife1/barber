@@ -2,33 +2,33 @@
 const DEMO_GALLERY = [
     {
         id: 1,
-        title: "КЛАССИЧЕСКАЯ СТРИЖКА",
-        url: "https://images.unsplash.com/photo-1567894340315-735d7c361db0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+        title: "СКОРО ФОТО МАКСИМА",
+        url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMUExQTFBIi8+CjxwYXRoIGQ9Ik0xNzUgMjI1TDIyNSAxNzVMMjc1IDIyNUgyNzVWMjc1SDIyNVYyMjVIMTc1WiIgZmlsbD0iIzhCNDUxMyIvPgo8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNzUiIHI9IjI1IiBmaWxsPSIjOEU0RTVBIi8+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI3NSIgcj0iMTUiIGZpbGw9IiM4QjQ1MTMiLz4KPHN2Zz4="
     },
     {
         id: 2, 
-        title: "МОДНЫЙ ФЕЙД",
-        url: "https://images.unsplash.com/photo-1593705114312-a0ee03a3f7c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+        title: "СТИЛЬНЫЕ СТРИЖКИ",
+        url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMUExQTFBIi8+CjxwYXRoIGQ9Ik0xNzUgMjI1TDIyNSAxNzVMMjc1IDIyNUgyNzVWMjc1SDIyNVYyMjVIMTc1WiIgZmlsbD0iIzhCNDUxMyIvPgo8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNzUiIHI9IjI1IiBmaWxsPSIjOEU0RTVBIi8+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI3NSIgcj0iMTUiIGZpbGw9IiM4QjQ1MTMiLz4KPHN2Zz4="
     },
     {
         id: 3,
-        title: "УХОД ЗА БОРОДОЙ",
-        url: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+        title: "БРЮТАЛЬНЫЕ БОРОДЫ", 
+        url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMUExQTFBIi8+CjxwYXRoIGQ9Ik0xNzUgMjI1TDIyNSAxNzVMMjc1IDIyNUgyNzVWMjc1SDIyNVYyMjVIMTc1WiIgZmlsbD0iIzhCNDUxMyIvPgo8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNzUiIHI9IjI1IiBmaWxsPSIjOEU0RTVBIi8+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI3NSIgcj0iMTUiIGZpbGw9IiM4QjQ1MTMiLz4KPHN2Zz4="
     },
     {
         id: 4,
-        title: "БРИТЬЕ ОПАСНОЙ БРИТВОЙ",
-        url: "https://images.unsplash.com/photo-1621605815976-ac25731f6e3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+        title: "КОРОЛЕВСКОЕ БРИТЬЕ",
+        url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMUExQTFBIi8+CjxwYXRoIGQ9Ik0xNzUgMjI1TDIyNSAxNzVMMjc1IDIyNUgyNzVWMjc1SDIyNVYyMjVIMTc1WiIgZmlsbD0iIzhCNDUxMyIvPgo8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNzUiIHI9IjI1IiBmaWxsPSIjOEU0RTVBIi8+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI3NSIgcj0iMTUiIGZpbGw9IiM4QjQ1MTMiLz4KPHN2Zz4="
     },
     {
         id: 5,
-        title: "СТРИЖКА + УКЛАДКА", 
-        url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+        title: "МУЖСКОЙ ГРУМИНГ",
+        url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMUExQTFBIi8+CjxwYXRoIGQ9Ik0xNzUgMjI1TDIyNSAxNzVMMjc1IDIyNUgyNzVWMjc1SDIyNVYyMjVIMTc1WiIgZmlsbD0iIzhCNDUxMyIvPgo8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNzUiIHI9IjI1IiBmaWxsPSIjOEU0RTVBIi8+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI3NSIgcj0iMTUiIGZpbGw9IiM4QjQ1MTMiLz4KPHN2Zz4="
     },
     {
         id: 6,
-        title: "МУЖСКОЙ ГРУМИНГ",
-        url: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+        title: "ИНДИВИДУАЛЬНЫЙ СТИЛЬ",
+        url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMUExQTFBIi8+CjxwYXRoIGQ9Ik0xNzUgMjI1TDIyNSAxNzVMMjc1IDIyNUgyNzVWMjc1SDIyNVYyMjVIMTc1WiIgZmlsbD0iIzhCNDUxMyIvPgo8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNzUiIHI9IjI1IiBmaWxsPSIjOEU0RTVBIi8+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI3NSIgcj0iMTUiIGZpbGw9IiM4QjQ1MTMiLz4KPHN2Zz4="
     }
 ];
 
@@ -41,18 +41,16 @@ function loadGallery() {
 
     container.innerHTML = '';
 
-    // Всегда показываем демо-галерею для GitHub Pages
-    // Но если есть свои фото в localStorage - показываем их
-    const userGallery = JSON.parse(localStorage.getItem('barbershop_gallery') || '[]');
-    const galleryToShow = userGallery.length > 0 ? userGallery : DEMO_GALLERY;
+    // Всегда показываем демо-галерею с заглушками
+    const galleryToShow = DEMO_GALLERY;
 
     galleryToShow.forEach((image, index) => {
         const galleryHTML = `
             <div class="gallery-item" onclick="openGallery(${index})">
                 <div class="gallery-image-container">
-                    <img src="${image.url}" alt="${image.title}" loading="lazy" 
-                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMUEyQTMzIi8+CjxwYXRoIGQ9Ik0xNzUgMjI1TDIyNSAxNzVMMjc1IDIyNUgyNzVWMjc1SDIyNVYyMjVIMTc1WiIgZmlsbD0iIzhCNDUxMyIvPgo8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNzUiIHI9IjI1IiBmaWxsPSIjOEU0RTVBIi8+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI3NSIgcj0iMTUiIGZpbGw9IiM4QjQ1MTMiLz4KPHN2Zz4='">
+                    <img src="${image.url}" alt="${image.title}" loading="lazy">
                     <div class="gallery-frame"></div>
+                    <div class="gallery-placeholder-text">${image.title}</div>
                 </div>
                 <div class="gallery-overlay">${image.title}</div>
             </div>
@@ -75,12 +73,46 @@ function openGallery(index) {
     
     galleryImage.src = image.url;
     galleryImage.alt = image.title;
+    
+    // Добавляем текст поверх изображения в модалке
+    const existingText = document.querySelector('.modal-image-text');
+    if (existingText) {
+        existingText.remove();
+    }
+    
+    const modalText = document.createElement('div');
+    modalText.className = 'modal-image-text';
+    modalText.textContent = image.title;
+    modalText.style.cssText = `
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #8b4513;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        font-family: 'Arial', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        z-index: 10;
+        pointer-events: none;
+    `;
+    
+    document.querySelector('.gallery-modal').appendChild(modalText);
     document.getElementById('galleryModal').style.display = 'block';
 }
 
 // Закрытие галереи
 function closeGallery() {
     document.getElementById('galleryModal').style.display = 'none';
+    
+    // Удаляем текст при закрытии
+    const modalText = document.querySelector('.modal-image-text');
+    if (modalText) {
+        modalText.remove();
+    }
 }
 
 // Следующее изображение
@@ -89,7 +121,14 @@ function nextImage() {
     if (galleryData.length === 0) return;
     
     currentImageIndex = (currentImageIndex + 1) % galleryData.length;
-    document.getElementById('galleryImage').src = galleryData[currentImageIndex].url;
+    const image = galleryData[currentImageIndex];
+    document.getElementById('galleryImage').src = image.url;
+    
+    // Обновляем текст
+    const modalText = document.querySelector('.modal-image-text');
+    if (modalText) {
+        modalText.textContent = image.title;
+    }
 }
 
 // Предыдущее изображение
@@ -98,7 +137,14 @@ function prevImage() {
     if (galleryData.length === 0) return;
     
     currentImageIndex = (currentImageIndex - 1 + galleryData.length) % galleryData.length;
-    document.getElementById('galleryImage').src = galleryData[currentImageIndex].url;
+    const image = galleryData[currentImageIndex];
+    document.getElementById('galleryImage').src = image.url;
+    
+    // Обновляем текст
+    const modalText = document.querySelector('.modal-image-text');
+    if (modalText) {
+        modalText.textContent = image.title;
+    }
 }
 
 // Мобильное меню
