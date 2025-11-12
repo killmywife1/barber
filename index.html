@@ -2,7 +2,9 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Big Style Barber - Барбершоп</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +20,7 @@
             
             <!-- Форма входа пользователя -->
             <div id="userLoginForm">
-                <input type="text" id="userPhone" placeholder="Номер телефона" maxlength="11">
+                <input type="text" id="userPhone" placeholder="Номер телефона" maxlength="11" inputmode="numeric">
                 <input type="password" id="userPassword" placeholder="Пароль">
                 <button onclick="userLogin()">Войти как клиент</button>
                 <button onclick="showRegisterForm()">Регистрация</button>
@@ -28,7 +30,7 @@
             <!-- Форма регистрации -->
             <div id="userRegisterForm" style="display: none;">
                 <input type="text" id="regName" placeholder="Ваше имя">
-                <input type="text" id="regPhone" placeholder="Номер телефона" maxlength="11">
+                <input type="text" id="regPhone" placeholder="Номер телефона" maxlength="11" inputmode="numeric">
                 <input type="password" id="regPassword" placeholder="Пароль">
                 <button onclick="userRegister()">Зарегистрироваться</button>
                 <button onclick="showLoginForm()">Назад к входу</button>
@@ -48,7 +50,10 @@
     <div id="galleryModal" class="modal">
         <div class="modal-content gallery-modal">
             <span class="close" onclick="closeGallery()">&times;</span>
-            <img id="galleryImage" src="" alt="Работа барбера">
+            <picture>
+                <source srcset="" type="image/webp">
+                <img id="galleryImage" src="" alt="Работа барбера" loading="eager">
+            </picture>
             <div class="gallery-nav">
                 <button onclick="prevImage()">‹</button>
                 <button onclick="nextImage()">›</button>
@@ -63,7 +68,7 @@
                 <h1>BIG STYLE</h1>
                 <span>BARBER SHOP</span>
             </div>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <button class="menu-toggle" aria-label="Открыть меню" onclick="toggleMenu()">☰</button>
             <nav class="nav" id="mainNav">
                 <a href="#services">УСЛУГИ</a>
                 <a href="#gallery">РАБОТЫ</a>
@@ -72,8 +77,7 @@
                 <a href="#contacts">КОНТАКТЫ</a>
                 <a href="#" id="loginBtn" onclick="showAuthModal()">ВОЙТИ</a>
                 <a href="#" id="profileBtn" style="display: none;" onclick="showProfile()">ПРОФИЛЬ</a>
-                <!-- Закомментировано для GitHub Pages -->
-                <!-- <a href="admin.html" id="adminBtn" style="display: none;">АДМИНКА</a> -->
+                <a href="admin.html" id="adminBtn" style="display: none;">АДМИНКА</a>
                 <a href="#" id="logoutBtn" style="display: none;" onclick="logout()">ВЫЙТИ</a>
             </nav>
         </div>
@@ -172,8 +176,18 @@
         </div>
     </footer>
 
+    <!-- Предзагрузка критичных ресурсов -->
+    <link rel="preload" href="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" as="image">
+    
     <script src="auth.js"></script>
     <script src="script.js"></script>
     <script src="gallery.js"></script>
+    
+    <script>
+    // Оптимизация для iOS
+    if (navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)) {
+        document.addEventListener('touchstart', function(){}, {passive: true});
+    }
+    </script>
 </body>
 </html>
