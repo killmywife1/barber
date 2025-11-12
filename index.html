@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Big Style Barber - Барбершоп</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Wallpoet&family=Audiowide&family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Модальное окно авторизации -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Вход в систему</h2>
+            
+            <!-- Форма входа пользователя -->
+            <div id="userLoginForm">
+                <input type="text" id="userPhone" placeholder="Номер телефона" maxlength="11" inputmode="numeric">
+                <input type="password" id="userPassword" placeholder="Пароль">
+                <button onclick="userLogin()">Войти как клиент</button>
+                <button onclick="showRegisterForm()">Регистрация</button>
+                <p class="admin-link" onclick="showAdminForm()">Вход для администратора</p>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div id="userRegisterForm" style="display: none;">
+                <input type="text" id="regName" placeholder="Ваше имя">
+                <input type="text" id="regPhone" placeholder="Номер телефона" maxlength="11" inputmode="numeric">
+                <input type="password" id="regPassword" placeholder="Пароль">
+                <button onclick="userRegister()">Зарегистрироваться</button>
+                <button onclick="showLoginForm()">Назад к входу</button>
+            </div>
+
+            <!-- Форма входа админа -->
+            <div id="adminLoginForm" style="display: none;">
+                <input type="text" id="adminLogin" placeholder="Логин администратора">
+                <input type="password" id="adminPassword" placeholder="Пароль">
+                <button onclick="adminLogin()">Войти как администратор</button>
+                <button onclick="showLoginForm()">Назад</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно галереи -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content gallery-modal">
+            <span class="close" onclick="closeGallery()">&times;</span>
+            <picture>
+                <source srcset="" type="image/webp">
+                <img id="galleryImage" src="" alt="Работа барбера" loading="eager">
+            </picture>
+            <div class="gallery-nav">
+                <button onclick="prevImage()">‹</button>
+                <button onclick="nextImage()">›</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>BIG STYLE</h1>
+                <span>BARBER SHOP</span>
+            </div>
+            <button class="menu-toggle" aria-label="Открыть меню" onclick="toggleMenu()">☰</button>
+            <nav class="nav" id="mainNav">
+                <a href="#services">УСЛУГИ</a>
+                <a href="#gallery">РАБОТЫ</a>
+                <a href="#promotions">АКЦИИ</a>
+                <a href="#loyalty">БАЛЛЫ</a>
+                <a href="#contacts">КОНТАКТЫ</a>
+                <a href="#" id="loginBtn" onclick="showAuthModal()">ВОЙТИ</a>
+                <a href="#" id="profileBtn" style="display: none;" onclick="showProfile()">ПРОФИЛЬ</a>
+                <a href="admin.html" id="adminBtn" style="display: none;">АДМИНКА</a>
+                <a href="#" id="logoutBtn" style="display: none;" onclick="logout()">ВЫЙТИ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="hero">
+        <div class="container">
+            <h2>НАСТОЯЩИЙ МУЖСКОЙ СТИЛЬ</h2>
+            <p>Стрижки, бритье и уход за бородой от профессионалов</p>
+            <button class="cta-button" onclick="scrollToServices()">СМОТРЕТЬ УСЛУГИ</button>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>УСЛУГИ</h2>
+            <div id="servicesContainer" class="services-grid">
+                <!-- Услуги загружаются через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Галерея работ -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2>НАШИ РАБОТЫ</h2>
+            <div class="gallery-grid" id="galleryContainer">
+                <!-- Галерея загружается через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Акции -->
+    <section id="promotions" class="promotions">
+        <div class="container">
+            <h2>АКЦИИ</h2>
+            <div id="promotionsContainer" class="promotions-grid">
+                <!-- Акции загружаются через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Программа лояльности -->
+    <section id="loyalty" class="loyalty">
+        <div class="container">
+            <h2>ПРОГРАММА ЛОЯЛЬНОСТИ</h2>
+            <div class="loyalty-info">
+                <div class="loyalty-card">
+                    <h3>1 СТРИЖКА = 100 БАЛЛОВ</h3>
+                    <p>Копите баллы за каждое посещение</p>
+                </div>
+                <div class="loyalty-card">
+                    <h3>500 БАЛЛОВ = 20% СКИДКИ</h3>
+                    <p>Оплачивайте стрижки баллами</p>
+                </div>
+                <div class="loyalty-card">
+                    <h3>1000 БАЛЛОВ = БЕСПЛАТНО</h3>
+                    <p>Получите стрижку в подарок</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блог Максима -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <h2>БЛОГ МАКСИМА КОРОЛЕВА</h2>
+            <div class="blog-content">
+                <div class="blog-photo">
+                    <div class="photo-frame">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                             alt="Максим Королев" id="barberPhoto">
+                        <div class="photo-glow"></div>
+                    </div>
+                </div>
+                <div class="blog-posts">
+                    <article class="blog-post">
+                        <h3>НОВАЯ ЭРА МУЖСКОГО СТИЛЯ В ОМУТНИНСКЕ</h3>
+                        <div class="post-date"> </div>
+                        <p>Привет, я Максим Королев! Недавно открыл Big Style Barber в нашем городе. Моя миссия - привнести настоящий мужской стиль в Омутнинск. Здесь нет места посредственности - только профессиональный подход и индивидуальный стиль для каждого клиента.</p>
+                    </article>
+                    <article class="blog-post">
+                        <h3>ПОЧЕМУ Я СТАЛ БАРБЕРОМ В 2025</h3>
+                        <div class="post-date"> </div>
+                        <p>В современном мире, где все становится цифровым, я верю в силу личного контакта. Барбершоп - это место, где мужчины могут расслабиться, пообщаться и преобразиться. В 2025 году качественный сервис и внимание к деталям ценятся как никогда.</p>
+                    </article>
+                    <article class="blog-post">
+                        <h3>МОИ ПЛАНЫ НА 2026 ГОД</h3>
+                        <div class="post-date"> </div>
+                        <p>В этом году я планирую не только стричь и брить, но и создать настоящее сообщество стильных мужчин в Омутнинске. Буду проводить мастер-классы по уходу, внедрять новые техники и делать наш город немного стильнее с каждой стрижкой!</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <h2>КОНТАКТЫ</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>АДРЕС</h3>
+                    <p>г. Омутнинск, ул. Ленина, 123</p>
+                </div>
+                <div class="contact-item">
+                    <h3>ТЕЛЕФОН</h3>
+                    <p>+7 (912) 345-67-89</p>
+                </div>
+                <div class="contact-item">
+                    <h3>ЧАСЫ РАБОТЫ</h3>
+                    <p>Пн-Пт: 9:00 - 20:00<br>Сб-Вс: 10:00 - 18:00</p>
+                </div>
+            </div>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    🗺️ Карта будет здесь
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 BIG STYLE BARBER. ВСЕ ПРАВА ЗАЩИЩЕНЫ.</p>
+        </div>
+    </footer>
+
+    <!-- Предзагрузка критичных ресурсов -->
+    <link rel="preload" href="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" as="image">
+    
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script src="gallery.js"></script>
+    
+    <script>
+    // Оптимизация для iOS
+    if (navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)) {
+        document.addEventListener('touchstart', function(){}, {passive: true});
+    }
+    </script>
+</body>
+</html>

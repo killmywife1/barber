@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель - Big Style Barber</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #0a0a0a;
+            min-height: 100vh;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #8b4513;
+        }
+
+        .admin-header h1 {
+            color: #8b4513;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .admin-nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .admin-nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #8b4513;
+            border-radius: 3px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .admin-nav a:hover {
+            background: #8b4513;
+            color: #fff;
+        }
+
+        .admin-section {
+            background: #1a1a1a;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+
+        .admin-section h2 {
+            color: #8b4513;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .form-group input, .form-group textarea {
+            padding: 12px;
+            background: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 3px;
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+
+        .form-group button {
+            background: #8b4513;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+
+        .form-group button:hover {
+            background: #a0522d;
+        }
+
+        .items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .item-card {
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid #8b4513;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .item-title {
+            font-weight: bold;
+            color: #8b4513;
+            font-size: 16px;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .delete-btn:hover {
+            background: #c82333;
+        }
+
+        .action-btn {
+            background: #28a745;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 11px;
+            margin-left: 5px;
+            text-transform: uppercase;
+        }
+
+        .action-btn:hover {
+            background: #218838;
+        }
+
+        .gallery-preview {
+            max-width: 200px;
+            max-height: 150px;
+            border: 1px solid #8b4513;
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+
+        .url-help {
+            font-size: 12px;
+            color: #8b4513;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>АДМИН-ПАНЕЛЬ BIG STYLE</h1>
+            <div class="admin-nav">
+                <a href="index.html">НА САЙТ</a>
+                <a href="#" onclick="logout()">ВЫЙТИ</a>
+            </div>
+        </div>
+
+        <!-- Управление услугами -->
+        <div class="admin-section">
+            <h2>УПРАВЛЕНИЕ УСЛУГАМИ</h2>
+            
+            <div class="form-group">
+                <input type="text" id="serviceName" placeholder="НАЗВАНИЕ УСЛУГИ">
+                <input type="number" id="servicePrice" placeholder="ЦЕНА">
+                <textarea id="serviceDesc" placeholder="ОПИСАНИЕ" rows="3"></textarea>
+                <button onclick="addService()">ДОБАВИТЬ УСЛУГУ</button>
+            </div>
+
+            <div id="servicesList" class="items-list">
+                <!-- Список услуг -->
+            </div>
+        </div>
+
+        <!-- Управление акциями -->
+        <div class="admin-section">
+            <h2>УПРАВЛЕНИЕ АКЦИЯМИ</h2>
+            
+            <div class="form-group">
+                <input type="text" id="promoTitle" placeholder="ЗАГОЛОВОК АКЦИИ">
+                <textarea id="promoDesc" placeholder="ОПИСАНИЕ АКЦИИ" rows="3"></textarea>
+                <button onclick="addPromotion()">ДОБАВИТЬ АКЦИЮ</button>
+            </div>
+
+            <div id="promotionsList" class="items-list">
+                <!-- Список акций -->
+            </div>
+        </div>
+
+        <!-- Управление галереей -->
+        <div class="admin-section">
+            <h2>УПРАВЛЕНИЕ ГАЛЕРЕЕЙ</h2>
+            
+            <div class="form-group">
+                <input type="text" id="photoTitle" placeholder="НАЗВАНИЕ РАБОТЫ">
+                <input type="text" id="photoUrl" placeholder="ССЫЛКА НА ФОТО" oninput="previewPhoto(this.value)">
+                <div class="url-help">Загрузите фото на <a href="https://imgbb.com/" target="_blank" style="color: #8b4513;">ImgBB.com</a> и вставьте прямую ссылку</div>
+                <img id="photoPreview" class="gallery-preview" style="display: none;">
+                <button onclick="addPhoto()">ДОБАВИТЬ ФОТО</button>
+            </div>
+
+            <div id="galleryList" class="items-list">
+                <!-- Список фото -->
+            </div>
+        </div>
+
+        <!-- Управление клиентами -->
+        <div class="admin-section">
+            <h2>УПРАВЛЕНИЕ КЛИЕНТАМИ</h2>
+            <div id="usersList" class="items-list">
+                <!-- Список клиентов -->
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
