@@ -1,10 +1,29 @@
 // Загрузка данных для главной страницы
-function loadHomePageData() {
-    const services = JSON.parse(localStorage.getItem('barbershop_services') || '[]');
-    const promotions = JSON.parse(localStorage.getItem('barbershop_promotions') || '[]');
+async function loadHomePageData() {
+    try {
+        // Пробуем загрузить с data/services.json
+        const response = await fetch('data/services.json');
+        const serverData = await response.json();
+        
+        // Объединяем с localStorage
+        const localServices = JSON.parse(localStorage.getItem('barbershop_services') || '[]');
+        const localPromotions = JSON.parse(localStorage.getItem('barbershop_promotions') || '[]');
+        
+        const services = localServices.length > 0 ? localServices : serverData.services;
+        const promotions = localPromotions.length > 0 ? localPromotions : serverData.promotions;
 
-    renderServicesForClients(services);
-    renderPromotionsForClients(promotions);
+        renderServicesForClients(services);
+        renderPromotionsForClients(promotions);
+        
+    } catch (error) {
+        // Если data/services.json нет, используем только localStorage
+        console.log('data/services.json не найден, используем localStorage');
+        const services = JSON.parse(localStorage.getItem('barbershop_services') || '[]');
+        const promotions = JSON.parse(localStorage.getItem('barbershop_promotions') || '[]');
+        
+        renderServicesForClients(services);
+        renderPromotionsForClients(promotions);
+    }
 }
 
 // Отображение услуг для клиентов
@@ -71,4 +90,5 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
 });
