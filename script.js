@@ -63,32 +63,52 @@ function renderPromotionsForClients(promotions) {
     });
 }
 
-// Прокрутка к услугам
+// Плавная прокрутка с параллакс эффектом
 function scrollToServices() {
-    document.getElementById('services').scrollIntoView({
+    const servicesSection = document.getElementById('services');
+    const headerHeight = document.querySelector('.header').offsetHeight;
+    
+    window.scrollTo({
+        top: servicesSection.offsetTop - headerHeight,
         behavior: 'smooth'
     });
 }
 
+// Параллакс эффект для фона
+function initParallax() {
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.hero');
+        
+        parallaxElements.forEach(function(el) {
+            const speed = 0.5;
+            el.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+    });
+}
+
 // Плавная прокрутка для всех якорей
-document.addEventListener('DOMContentLoaded', function() {
-    // Загрузка данных
-    if (document.getElementById('servicesContainer')) {
-        loadHomePageData();
-    }
-    
-    // Плавная прокрутка
+function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                window.scrollTo({
+                    top: target.offsetTop - headerHeight,
+                    behavior: 'smooth'
                 });
             }
         });
     });
+}
 
+// Загрузка при старте
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('servicesContainer')) {
+        loadHomePageData();
+        initParallax();
+        initSmoothScroll();
+    }
 });
