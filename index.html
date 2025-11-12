@@ -2,388 +2,198 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Админ-панель - Big Style Barber</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Big Style Barber - Барбершоп</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Wallpoet&family=Audiowide&family=Black+Ops+One&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            padding: 20px;
-        }
-
-        .admin-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .admin-header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #8b4513;
-        }
-
-        .admin-header h1 {
-            font-family: 'Black Ops One', cursive;
-            color: #8b4513;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .admin-nav {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .admin-nav a {
-            color: #e0e0e0;
-            text-decoration: none;
-            padding: 10px 20px;
-            border: 1px solid #8b4513;
-            border-radius: 3px;
-            transition: all 0.3s;
-            font-family: 'Orbitron', monospace;
-        }
-
-        .admin-nav a:hover {
-            background: #8b4513;
-            color: #fff;
-        }
-
-        .admin-section {
-            background: #1a1a1a;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid #333;
-            border-radius: 5px;
-        }
-
-        .admin-section h2 {
-            font-family: 'Black Ops One', cursive;
-            color: #8b4513;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .form-group input, .form-group textarea {
-            padding: 12px;
-            background: #2d2d2d;
-            border: 1px solid #444;
-            border-radius: 3px;
-            color: #e0e0e0;
-            font-size: 14px;
-            font-family: 'Rajdhani', sans-serif;
-        }
-
-        .form-group button {
-            background: #8b4513;
-            color: #fff;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-family: 'Orbitron', monospace;
-        }
-
-        .form-group button:hover {
-            background: #a0522d;
-        }
-
-        .items-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .item-card {
-            background: #2d2d2d;
-            padding: 20px;
-            border-radius: 5px;
-            border-left: 4px solid #8b4513;
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .item-title {
-            font-weight: bold;
-            color: #8b4513;
-            font-size: 16px;
-            font-family: 'Orbitron', monospace;
-        }
-
-        .delete-btn {
-            background: #dc3545;
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .gallery-preview {
-            max-width: 200px;
-            max-height: 150px;
-            border: 1px solid #8b4513;
-            border-radius: 3px;
-            margin-top: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .admin-container {
-                padding: 0 15px;
-            }
-            
-            .admin-nav {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .admin-nav a {
-                width: 200px;
-                text-align: center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="admin-container">
-        <div class="admin-header">
-            <h1>АДМИН-ПАНЕЛЬ BIG STYLE</h1>
-            <p>Управление контентом сайта</p>
-            <div class="admin-nav">
-                <a href="index.html">НА САЙТ</a>
-                <a href="#" onclick="logout()">ВЫЙТИ</a>
-            </div>
-        </div>
-
-        <!-- Управление услугами -->
-        <div class="admin-section">
-            <h2>УПРАВЛЕНИЕ УСЛУГАМИ</h2>
+    <!-- Модальное окно авторизации -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Вход в систему</h2>
             
-            <div class="form-group">
-                <input type="text" id="serviceName" placeholder="НАЗВАНИЕ УСЛУГИ">
-                <input type="number" id="servicePrice" placeholder="ЦЕНА">
-                <textarea id="serviceDesc" placeholder="ОПИСАНИЕ" rows="3"></textarea>
-                <button onclick="addService()">ДОБАВИТЬ УСЛУГУ</button>
+            <!-- Форма входа пользователя -->
+            <div id="userLoginForm">
+                <input type="text" id="userPhone" placeholder="Номер телефона" maxlength="11" inputmode="numeric">
+                <input type="password" id="userPassword" placeholder="Пароль">
+                <button onclick="userLogin()">Войти как клиент</button>
+                <button onclick="showRegisterForm()">Регистрация</button>
+                <p class="admin-link" onclick="showAdminForm()">Вход для администратора</p>
             </div>
 
-            <div id="servicesList" class="items-list">
-                <!-- Список услуг -->
-            </div>
-        </div>
-
-        <!-- Управление акциями -->
-        <div class="admin-section">
-            <h2>УПРАВЛЕНИЕ АКЦИЯМИ</h2>
-            
-            <div class="form-group">
-                <input type="text" id="promoTitle" placeholder="ЗАГОЛОВОК АКЦИИ">
-                <textarea id="promoDesc" placeholder="ОПИСАНИЕ АКЦИИ" rows="3"></textarea>
-                <button onclick="addPromotion()">ДОБАВИТЬ АКЦИЮ</button>
+            <!-- Форма регистрации -->
+            <div id="userRegisterForm" style="display: none;">
+                <input type="text" id="regName" placeholder="Ваше имя">
+                <input type="text" id="regPhone" placeholder="Номер телефона" maxlength="11" inputmode="numeric">
+                <input type="password" id="regPassword" placeholder="Пароль">
+                <button onclick="userRegister()">Зарегистрироваться</button>
+                <button onclick="showLoginForm()">Назад к входу</button>
             </div>
 
-            <div id="promotionsList" class="items-list">
-                <!-- Список акций -->
-            </div>
-        </div>
-
-        <!-- Управление галереей -->
-        <div class="admin-section">
-            <h2>УПРАВЛЕНИЕ ГАЛЕРЕЕЙ</h2>
-            
-            <div class="form-group">
-                <input type="text" id="photoTitle" placeholder="НАЗВАНИЕ РАБОТЫ">
-                <input type="text" id="photoUrl" placeholder="ССЫЛКА НА ФОТО">
-                <button onclick="addPhoto()">ДОБАВИТЬ ФОТО</button>
-            </div>
-
-            <div id="galleryList" class="items-list">
-                <!-- Список фото -->
+            <!-- Форма входа админа -->
+            <div id="adminLoginForm" style="display: none;">
+                <input type="text" id="adminLogin" placeholder="Логин администратора">
+                <input type="password" id="adminPassword" placeholder="Пароль">
+                <button onclick="adminLogin()">Войти как администратор</button>
+                <button onclick="showLoginForm()">Назад</button>
             </div>
         </div>
     </div>
 
+    <!-- Модальное окно галереи -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content gallery-modal">
+            <span class="close" onclick="closeGallery()">&times;</span>
+            <picture>
+                <source srcset="" type="image/webp">
+                <img id="galleryImage" src="" alt="Работа барбера" loading="eager">
+            </picture>
+            <div class="gallery-nav">
+                <button onclick="prevImage()">‹</button>
+                <button onclick="nextImage()">›</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>BIG STYLE</h1>
+                <span>BARBER SHOP</span>
+            </div>
+            <button class="menu-toggle" aria-label="Открыть меню" onclick="toggleMenu()">☰</button>
+            <nav class="nav" id="mainNav">
+                <a href="#services">УСЛУГИ</a>
+                <a href="#gallery">РАБОТЫ</a>
+                <a href="#promotions">АКЦИИ</a>
+                <a href="#loyalty">БАЛЛЫ</a>
+                <a href="#contacts">КОНТАКТЫ</a>
+                <a href="#" id="loginBtn" onclick="showAuthModal()">ВОЙТИ</a>
+                <a href="#" id="profileBtn" style="display: none;" onclick="showProfile()">ПРОФИЛЬ</a>
+                <a href="admin.html" id="adminBtn">АДМИНКА</a>
+                <a href="#" id="logoutBtn" style="display: none;" onclick="logout()">ВЫЙТИ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="hero">
+        <div class="container">
+            <h2>НАСТОЯЩИЙ МУЖСКОЙ СТИЛЬ</h2>
+            <p>Стрижки, бритье и уход за бородой от профессионалов</p>
+            <button class="cta-button" onclick="scrollToServices()">СМОТРЕТЬ УСЛУГИ</button>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>УСЛУГИ</h2>
+            <div id="servicesContainer" class="services-grid">
+                <!-- Услуги загружаются через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Галерея работ -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2>НАШИ РАБОТЫ</h2>
+            <div class="gallery-grid" id="galleryContainer">
+                <!-- Галерея загружается через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Акции -->
+    <section id="promotions" class="promotions">
+        <div class="container">
+            <h2>АКЦИИ</h2>
+            <div id="promotionsContainer" class="promotions-grid">
+                <!-- Акции загружаются через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Программа лояльности -->
+    <section id="loyalty" class="loyalty">
+        <div class="container">
+            <h2>ПРОГРАММА ЛОЯЛЬНОСТИ</h2>
+            <div class="loyalty-info">
+                <div class="loyalty-card">
+                    <h3>1 СТРИЖКА = 100 БАЛЛОВ</h3>
+                    <p>Копите баллы за каждое посещение</p>
+                </div>
+                <div class="loyalty-card">
+                    <h3>500 БАЛЛОВ = 20% СКИДКИ</h3>
+                    <p>Оплачивайте стрижки баллами</p>
+                </div>
+                <div class="loyalty-card">
+                    <h3>1000 БАЛЛОВ = БЕСПЛАТНО</h3>
+                    <p>Получите стрижку в подарок</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <h2>КОНТАКТЫ</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>АДРЕС</h3>
+                    <p>г. Омутнинск, ул. Ленина, 123</p>
+                </div>
+                <div class="contact-item">
+                    <h3>ТЕЛЕФОН</h3>
+                    <p>+7 (912) 345-67-89</p>
+                </div>
+                <div class="contact-item">
+                    <h3>ЧАСЫ РАБОТЫ</h3>
+                    <p>Пн-Пт: 9:00 - 20:00<br>Сб-Вс: 10:00 - 18:00</p>
+                </div>
+            </div>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    🗺️ Карта будет здесь
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 BIG STYLE BARBER. ВСЕ ПРАВА ЗАЩИЩЕНЫ.</p>
+        </div>
+    </footer>
+
+    <!-- Предзагрузка критичных ресурсов -->
+    <link rel="preload" href="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" as="image">
+    
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script src="gallery.js"></script>
+    
     <script>
-        // Простая админка для GitHub Pages
-        function loadAdminData() {
-            loadServices();
-            loadPromotions();
-            loadGallery();
-        }
+    // Оптимизация для iOS
+    if (navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)) {
+        document.addEventListener('touchstart', function(){}, {passive: true});
+    }
 
-        function loadServices() {
-            const services = JSON.parse(localStorage.getItem('barbershop_services') || '[]');
-            const container = document.getElementById('servicesList');
-            container.innerHTML = '';
-
-            services.forEach(service => {
-                const serviceHTML = `
-                    <div class="item-card">
-                        <div class="item-header">
-                            <span class="item-title">${service.name} - ${service.price} руб.</span>
-                            <button class="delete-btn" onclick="deleteService(${service.id})">УДАЛИТЬ</button>
-                        </div>
-                        <p>${service.description}</p>
-                    </div>
-                `;
-                container.innerHTML += serviceHTML;
-            });
-        }
-
-        function loadPromotions() {
-            const promotions = JSON.parse(localStorage.getItem('barbershop_promotions') || '[]');
-            const container = document.getElementById('promotionsList');
-            container.innerHTML = '';
-
-            promotions.forEach(promo => {
-                const promoHTML = `
-                    <div class="item-card">
-                        <div class="item-header">
-                            <span class="item-title">${promo.title}</span>
-                            <button class="delete-btn" onclick="deletePromotion(${promo.id})">УДАЛИТЬ</button>
-                        </div>
-                        <p>${promo.description}</p>
-                    </div>
-                `;
-                container.innerHTML += promoHTML;
-            });
-        }
-
-        function loadGallery() {
-            const gallery = JSON.parse(localStorage.getItem('barbershop_gallery') || '[]');
-            const container = document.getElementById('galleryList');
-            container.innerHTML = '';
-
-            gallery.forEach(photo => {
-                const photoHTML = `
-                    <div class="item-card">
-                        <div class="item-header">
-                            <span class="item-title">${photo.title}</span>
-                            <button class="delete-btn" onclick="deletePhoto(${photo.id})">УДАЛИТЬ</button>
-                        </div>
-                        <img src="${photo.url}" alt="${photo.title}" class="gallery-preview">
-                    </div>
-                `;
-                container.innerHTML += photoHTML;
-            });
-        }
-
-        function addService() {
-            const name = document.getElementById('serviceName').value;
-            const price = document.getElementById('servicePrice').value;
-            const desc = document.getElementById('serviceDesc').value;
-
-            if (name && price) {
-                const services = JSON.parse(localStorage.getItem('barbershop_services') || '[]');
-                services.push({
-                    id: Date.now(),
-                    name: name.toUpperCase(),
-                    price: parseInt(price),
-                    description: desc
-                });
-                localStorage.setItem('barbershop_services', JSON.stringify(services));
-                loadServices();
-                
-                document.getElementById('serviceName').value = '';
-                document.getElementById('servicePrice').value = '';
-                document.getElementById('serviceDesc').value = '';
-            }
-        }
-
-        function addPromotion() {
-            const title = document.getElementById('promoTitle').value;
-            const desc = document.getElementById('promoDesc').value;
-
-            if (title) {
-                const promotions = JSON.parse(localStorage.getItem('barbershop_promotions') || '[]');
-                promotions.push({
-                    id: Date.now(),
-                    title: title.toUpperCase(),
-                    description: desc
-                });
-                localStorage.setItem('barbershop_promotions', JSON.stringify(promotions));
-                loadPromotions();
-                
-                document.getElementById('promoTitle').value = '';
-                document.getElementById('promoDesc').value = '';
-            }
-        }
-
-        function addPhoto() {
-            const title = document.getElementById('photoTitle').value;
-            const url = document.getElementById('photoUrl').value;
-
-            if (title && url) {
-                const gallery = JSON.parse(localStorage.getItem('barbershop_gallery') || '[]');
-                gallery.push({
-                    id: Date.now(),
-                    title: title,
-                    url: url
-                });
-                localStorage.setItem('barbershop_gallery', JSON.stringify(gallery));
-                loadGallery();
-                
-                document.getElementById('photoTitle').value = '';
-                document.getElementById('photoUrl').value = '';
-            }
-        }
-
-        function deleteService(id) {
-            const services = JSON.parse(localStorage.getItem('barbershop_services') || '[]');
-            const filtered = services.filter(service => service.id !== id);
-            localStorage.setItem('barbershop_services', JSON.stringify(filtered));
-            loadServices();
-        }
-
-        function deletePromotion(id) {
-            const promotions = JSON.parse(localStorage.getItem('barbershop_promotions') || '[]');
-            const filtered = promotions.filter(promo => promo.id !== id);
-            localStorage.setItem('barbershop_promotions', JSON.stringify(filtered));
-            loadPromotions();
-        }
-
-        function deletePhoto(id) {
-            const gallery = JSON.parse(localStorage.getItem('barbershop_gallery') || '[]');
-            const filtered = gallery.filter(photo => photo.id !== id);
-            localStorage.setItem('barbershop_gallery', JSON.stringify(filtered));
-            loadGallery();
-        }
-
-        function logout() {
-            localStorage.removeItem('barbershop_current_user');
-            window.location.href = 'index.html';
-        }
-
-        // Загрузка при старте
-        document.addEventListener('DOMContentLoaded', loadAdminData);
+    // Автоматический показ админки на GitHub Pages
+    document.addEventListener('DOMContentLoaded', function() {
+        // На GitHub Pages всегда показываем админку
+        document.getElementById('adminBtn').style.display = 'block';
+    });
     </script>
 </body>
 </html>
