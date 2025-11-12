@@ -6,47 +6,30 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 500;
     line-height: 1.6;
-    background: 
-        /* Текстура металла */
-        linear-gradient(45deg, #0a0a0a 25%, transparent 25%), 
-        linear-gradient(-45deg, #0a0a0a 25%, transparent 25%), 
-        linear-gradient(45deg, transparent 75%, #0a0a0a 75%), 
-        linear-gradient(-45deg, transparent 75%, #0a0a0a 75%),
-        /* Основной градиент */
-        radial-gradient(circle at 50% 50%, #1a0f0f, #000000);
-    
-    background-size: 4px 4px, 4px 4px, 4px 4px, 4px 4px, cover;
-    background-position: 0 0, 0 2px, 2px -2px, -2px 0px, center;
+    background: #0a0a0a;
     color: #e0e0e0;
     overflow-x: hidden;
-    
-    /* Эффект неровной поверхности */
-    box-shadow: inset 0 0 100px rgba(139, 69, 19, 0.1);
 }
 
-/* Анимированные частицы на фоне */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.1) 2px, transparent 2px),
-        radial-gradient(circle at 80% 70%, rgba(139, 69, 19, 0.1) 1px, transparent 1px),
-        radial-gradient(circle at 40% 80%, rgba(139, 69, 19, 0.05) 3px, transparent 3px);
-    background-size: 200px 200px, 150px 150px, 180px 180px;
-    animation: particleMove 20s infinite linear;
-    pointer-events: none;
-    z-index: -1;
+/* Контейнер */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-@keyframes particleMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 25px); }
+/* Мобильное меню */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #8b4513;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
 }
 
 /* Анимации появления */
@@ -81,43 +64,6 @@ body::before {
         opacity: 1;
         transform: translateX(0);
     }
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes gritMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-50px, -25px); }
-}
-
-@keyframes textGlow {
-    from {
-        text-shadow: 0 0 5px rgba(139, 69, 19, 0.5);
-    }
-    to {
-        text-shadow: 0 0 10px rgba(139, 69, 19, 0.8), 0 0 20px rgba(139, 69, 19, 0.4);
-    }
-}
-
-/* Контейнер */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Мобильное меню */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: #8b4513;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 10px;
 }
 
 /* Модальное окно */
@@ -169,6 +115,7 @@ body::before {
     border-radius: 3px;
     color: #e0e0e0;
     font-size: 16px;
+    font-family: 'Rajdhani', sans-serif;
 }
 
 .modal button {
@@ -184,6 +131,8 @@ body::before {
     text-transform: uppercase;
     font-size: 14px;
     transition: all 0.3s;
+    font-family: 'Orbitron', monospace;
+    letter-spacing: 1px;
 }
 
 .modal button:hover {
@@ -197,6 +146,7 @@ body::before {
     margin-top: 15px;
     text-decoration: underline;
     font-size: 14px;
+    font-family: 'Rajdhani', sans-serif;
 }
 
 /* Модальное окно галереи */
@@ -238,6 +188,7 @@ body::before {
     align-items: center;
     justify-content: center;
     transition: all 0.3s;
+    font-family: 'Orbitron', monospace;
 }
 
 .gallery-nav button:hover {
@@ -263,42 +214,25 @@ body::before {
     align-items: center;
 }
 
-/* Анимированный логотип */
 .logo h1 {
+    font-family: 'Black Ops One', cursive;
+    font-size: 24px;
     color: #8b4513;
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     position: relative;
     display: inline-block;
     animation: fadeInLeft 0.8s ease-out;
-}
-
-.logo h1::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #8b4513;
-    transition: width 0.3s ease;
-}
-
-.logo:hover h1::after {
-    width: 100%;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
 .logo span {
+    font-family: 'Audiowide', cursive;
+    font-size: 9px;
     color: #ccc;
-    font-size: 8px;
     letter-spacing: 3px;
     display: block;
     text-align: center;
-    position: relative;
-    display: inline-block;
-    animation: textGlow 2s ease-in-out infinite alternate;
 }
 
 .nav {
@@ -309,10 +243,11 @@ body::before {
 }
 
 .nav a {
+    font-family: 'Orbitron', monospace;
+    font-weight: 600;
+    font-size: 11px;
     color: #e0e0e0;
     text-decoration: none;
-    font-size: 11px;
-    font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: color 0.3s;
@@ -329,31 +264,19 @@ body::before {
 
 /* Главный баннер */
 .hero {
-    position: relative;
     background: 
         linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.9)),
-        url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3') center/cover fixed;
+        url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3') center/cover;
     height: 100vh;
     display: flex;
     align-items: center;
     text-align: center;
     margin-top: 0;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grit" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="%238b4513" opacity="0.1"/><circle cx="50" cy="50" r="1" fill="%238b4513" opacity="0.05"/><circle cx="80" cy="80" r="0.5" fill="%238b4513" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grit)"/></svg>');
-    animation: gritMove 20s infinite linear;
 }
 
 .hero h2 {
-    font-size: 2em;
+    font-family: 'Black Ops One', cursive;
+    font-size: 2.5em;
     margin-bottom: 20px;
     color: #8b4513;
     text-transform: uppercase;
@@ -364,6 +287,7 @@ body::before {
 }
 
 .hero p {
+    font-family: 'Orbitron', monospace;
     font-size: 1em;
     margin-bottom: 30px;
     color: #ccc;
@@ -372,8 +296,8 @@ body::before {
     animation: fadeInUp 1s ease-out 0.3s both;
 }
 
-/* Эффект свечения для кнопок */
 .cta-button {
+    font-family: 'Wallpoet', cursive;
     background: #8b4513;
     color: #fff;
     padding: 12px 30px;
@@ -390,28 +314,11 @@ body::before {
     animation: fadeInUp 1s ease-out 0.6s both;
 }
 
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s;
-}
-
-.cta-button:hover::before {
-    left: 100%;
-}
-
 .cta-button:hover {
     background: transparent;
     color: #8b4513;
     transform: translateY(-2px);
-    box-shadow: 
-        0 0 20px rgba(139, 69, 19, 0.6),
-        0 0 40px rgba(139, 69, 19, 0.3);
+    box-shadow: 0 0 20px rgba(139, 69, 19, 0.6);
 }
 
 /* Секции */
@@ -421,8 +328,9 @@ section {
 }
 
 section h2 {
+    font-family: 'Black Ops One', cursive;
     text-align: center;
-    font-size: 1.8em;
+    font-size: 2em;
     margin-bottom: 40px;
     color: #8b4513;
     text-transform: uppercase;
@@ -450,38 +358,24 @@ section h2 {
     animation: fadeInUp 0.8s ease-out both;
 }
 
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(139, 69, 19, 0.1), transparent);
-    transition: left 0.5s;
-}
-
-.service-card:hover::before {
-    left: 100%;
-}
-
 .service-card:hover {
     transform: translateY(-10px) scale(1.02);
     border-color: #a0522d;
-    box-shadow: 
-        0 10px 30px rgba(139, 69, 19, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(139, 69, 19, 0.3);
 }
 
 .service-card h3 {
+    font-family: 'Orbitron', monospace;
     color: #8b4513;
     margin-bottom: 15px;
     font-size: 1.1em;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: 700;
 }
 
 .service-price {
+    font-family: 'Wallpoet', cursive;
     font-size: 1.5em;
     font-weight: bold;
     color: #e0e0e0;
@@ -490,6 +384,7 @@ section h2 {
 }
 
 .service-description {
+    font-family: 'Rajdhani', sans-serif;
     color: #999;
     line-height: 1.6;
     font-size: 0.85em;
@@ -534,20 +429,12 @@ section h2 {
     border: 3px solid #8b4513;
     pointer-events: none;
     box-shadow: inset 0 0 0 1px rgba(139, 69, 19, 0.3);
-    transition: all 0.3s;
 }
 
 .gallery-item:hover {
     transform: scale(1.05) rotate(1deg);
     border-color: #a0522d;
-    box-shadow: 
-        0 10px 25px rgba(139, 69, 19, 0.4),
-        0 0 0 1px rgba(160, 82, 45, 0.2);
-}
-
-.gallery-item:hover .gallery-frame {
-    border-color: #a0522d;
-    box-shadow: inset 0 0 0 2px rgba(160, 82, 45, 0.5);
+    box-shadow: 0 10px 25px rgba(139, 69, 19, 0.4);
 }
 
 .gallery-item img {
@@ -576,6 +463,7 @@ section h2 {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: bold;
+    font-family: 'Orbitron', monospace;
 }
 
 .gallery-item:hover .gallery-overlay {
@@ -608,31 +496,17 @@ section h2 {
     animation: fadeInUp 0.8s ease-out;
 }
 
-.promo-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-    transform: rotate(45deg);
-    animation: shine 3s infinite;
-}
-
-@keyframes shine {
-    0% { transform: rotate(45deg) translateX(-100%); }
-    100% { transform: rotate(45deg) translateX(100%); }
-}
-
 .promo-card h3 {
+    font-family: 'Wallpoet', cursive;
     font-size: 1.2em;
     margin-bottom: 10px;
     position: relative;
     z-index: 1;
+    letter-spacing: 1px;
 }
 
 .promo-card p {
+    font-family: 'Rajdhani', sans-serif;
     position: relative;
     z-index: 1;
     color: #f0f0f0;
@@ -659,20 +533,22 @@ section h2 {
 .loyalty-card:hover {
     transform: translateY(-8px);
     border-color: #a0522d;
-    box-shadow: 
-        0 8px 20px rgba(139, 69, 19, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25);
 }
 
 .loyalty-card h3 {
+    font-family: 'Orbitron', monospace;
     color: #8b4513;
     margin-bottom: 10px;
     font-size: 0.9em;
     text-transform: uppercase;
     line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .loyalty-card p {
+    font-family: 'Rajdhani', sans-serif;
     color: #999;
     font-size: 0.8em;
     line-height: 1.4;
@@ -692,14 +568,17 @@ section h2 {
 }
 
 .contact-item h3 {
+    font-family: 'Orbitron', monospace;
     color: #8b4513;
     margin-bottom: 15px;
     font-size: 1em;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: 700;
 }
 
 .contact-item p {
+    font-family: 'Rajdhani', sans-serif;
     color: #ccc;
     line-height: 1.6;
     font-size: 0.9em;
@@ -717,6 +596,7 @@ section h2 {
     text-align: center;
     color: #8b4513;
     font-size: 16px;
+    font-family: 'Audiowide', cursive;
 }
 
 /* Футер */
@@ -728,28 +608,10 @@ section h2 {
 }
 
 .footer p {
+    font-family: 'Orbitron', monospace;
     color: #666;
     font-size: 0.8em;
     letter-spacing: 1px;
-}
-
-/* Заглушка для галереи */
-.gallery-placeholder {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 60px 20px;
-    background: #1a1a1a;
-    border: 2px dashed #8b4513;
-    border-radius: 5px;
-}
-
-.gallery-placeholder h3 {
-    color: #8b4513;
-    margin-bottom: 10px;
-}
-
-.gallery-placeholder p {
-    color: #999;
 }
 
 /* Адаптивность для мобилок */
@@ -847,7 +709,7 @@ section h2 {
 
 @media (max-width: 480px) {
     .logo h1 {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .hero h2 {
@@ -864,6 +726,6 @@ section h2 {
     }
 
     .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     }
 }
