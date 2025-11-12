@@ -8,12 +8,98 @@
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background: #0a0a0a;
+    background: 
+        /* Текстура металла */
+        linear-gradient(45deg, #0a0a0a 25%, transparent 25%), 
+        linear-gradient(-45deg, #0a0a0a 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #0a0a0a 75%), 
+        linear-gradient(-45deg, transparent 75%, #0a0a0a 75%),
+        /* Основной градиент */
+        radial-gradient(circle at 50% 50%, #1a0f0f, #000000);
+    
+    background-size: 4px 4px, 4px 4px, 4px 4px, 4px 4px, cover;
+    background-position: 0 0, 0 2px, 2px -2px, -2px 0px, center;
     color: #e0e0e0;
-    background-image: 
-        radial-gradient(circle at 10% 20%, rgba(40, 40, 40, 0.3) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(40, 40, 40, 0.3) 0%, transparent 20%);
     overflow-x: hidden;
+    
+    /* Эффект неровной поверхности */
+    box-shadow: inset 0 0 100px rgba(139, 69, 19, 0.1);
+}
+
+/* Анимированные частицы на фоне */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 80% 70%, rgba(139, 69, 19, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 40% 80%, rgba(139, 69, 19, 0.05) 3px, transparent 3px);
+    background-size: 200px 200px, 150px 150px, 180px 180px;
+    animation: particleMove 20s infinite linear;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes particleMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 25px); }
+}
+
+/* Анимации появления */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes gritMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-50px, -25px); }
+}
+
+@keyframes textGlow {
+    from {
+        text-shadow: 0 0 5px rgba(139, 69, 19, 0.5);
+    }
+    to {
+        text-shadow: 0 0 10px rgba(139, 69, 19, 0.8), 0 0 20px rgba(139, 69, 19, 0.4);
+    }
 }
 
 /* Контейнер */
@@ -56,12 +142,7 @@ body {
     width: 90%;
     max-width: 400px;
     position: relative;
-    animation: modalAppear 0.3s ease-out;
-}
-
-@keyframes modalAppear {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    animation: fadeInUp 0.3s ease-out;
 }
 
 .close {
@@ -87,7 +168,7 @@ body {
     border: 1px solid #8b4513;
     border-radius: 3px;
     color: #e0e0e0;
-    font-size: 16px; /* Увеличим для мобилок */
+    font-size: 16px;
 }
 
 .modal button {
@@ -102,6 +183,7 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 14px;
+    transition: all 0.3s;
 }
 
 .modal button:hover {
@@ -122,15 +204,18 @@ body {
     max-width: 90%;
     max-height: 90%;
     background: transparent;
-    border: none;
+    border: 3px solid #8b4513;
+    border-radius: 10px;
     text-align: center;
+    padding: 20px;
+    animation: fadeInUp 0.3s ease-out;
 }
 
 .gallery-modal img {
     max-width: 100%;
     max-height: 70vh;
-    border: 2px solid #8b4513;
     border-radius: 5px;
+    border: 2px solid #a0522d;
 }
 
 .gallery-nav {
@@ -145,17 +230,19 @@ body {
     height: 50px;
     background: #8b4513;
     color: white;
-    border: none;
+    border: 2px solid #a0522d;
     border-radius: 50%;
     font-size: 24px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s;
 }
 
 .gallery-nav button:hover {
     background: #a0522d;
+    transform: scale(1.1);
 }
 
 /* Шапка */
@@ -176,12 +263,31 @@ body {
     align-items: center;
 }
 
+/* Анимированный логотип */
 .logo h1 {
     color: #8b4513;
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    animation: fadeInLeft 0.8s ease-out;
+}
+
+.logo h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #8b4513;
+    transition: width 0.3s ease;
+}
+
+.logo:hover h1::after {
+    width: 100%;
 }
 
 .logo span {
@@ -190,6 +296,9 @@ body {
     letter-spacing: 3px;
     display: block;
     text-align: center;
+    position: relative;
+    display: inline-block;
+    animation: textGlow 2s ease-in-out infinite alternate;
 }
 
 .nav {
@@ -210,6 +319,7 @@ body {
     padding: 5px 8px;
     border: 1px solid transparent;
     white-space: nowrap;
+    animation: fadeInRight 0.8s ease-out;
 }
 
 .nav a:hover {
@@ -219,15 +329,27 @@ body {
 
 /* Главный баннер */
 .hero {
+    position: relative;
     background: 
         linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.9)),
-        url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3') center/cover;
+        url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3') center/cover fixed;
     height: 100vh;
     display: flex;
     align-items: center;
     text-align: center;
     margin-top: 0;
-    padding: 0 20px;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grit" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="%238b4513" opacity="0.1"/><circle cx="50" cy="50" r="1" fill="%238b4513" opacity="0.05"/><circle cx="80" cy="80" r="0.5" fill="%238b4513" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grit)"/></svg>');
+    animation: gritMove 20s infinite linear;
 }
 
 .hero h2 {
@@ -238,6 +360,7 @@ body {
     letter-spacing: 2px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     line-height: 1.2;
+    animation: fadeInUp 1s ease-out;
 }
 
 .hero p {
@@ -246,8 +369,10 @@ body {
     color: #ccc;
     letter-spacing: 1px;
     line-height: 1.4;
+    animation: fadeInUp 1s ease-out 0.3s both;
 }
 
+/* Эффект свечения для кнопок */
 .cta-button {
     background: #8b4513;
     color: #fff;
@@ -260,12 +385,33 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.cta-button:hover::before {
+    left: 100%;
 }
 
 .cta-button:hover {
     background: transparent;
     color: #8b4513;
     transform: translateY(-2px);
+    box-shadow: 
+        0 0 20px rgba(139, 69, 19, 0.6),
+        0 0 40px rgba(139, 69, 19, 0.3);
 }
 
 /* Секции */
@@ -282,6 +428,7 @@ section h2 {
     text-transform: uppercase;
     letter-spacing: 2px;
     line-height: 1.2;
+    animation: fadeInUp 0.8s ease-out;
 }
 
 /* Услуги */
@@ -300,6 +447,7 @@ section h2 {
     transition: all 0.3s;
     position: relative;
     overflow: hidden;
+    animation: fadeInUp 0.8s ease-out both;
 }
 
 .service-card::before {
@@ -318,8 +466,11 @@ section h2 {
 }
 
 .service-card:hover {
-    border-color: #8b4513;
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
+    border-color: #a0522d;
+    box-shadow: 
+        0 10px 30px rgba(139, 69, 19, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .service-card h3 {
@@ -344,6 +495,10 @@ section h2 {
     font-size: 0.85em;
 }
 
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+
 /* Галерея */
 .gallery-grid {
     display: grid;
@@ -360,11 +515,39 @@ section h2 {
     background: #1a1a1a;
     border: 1px solid #333;
     transition: all 0.3s;
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+.gallery-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.gallery-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid #8b4513;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(139, 69, 19, 0.3);
+    transition: all 0.3s;
 }
 
 .gallery-item:hover {
-    transform: scale(1.05);
-    border-color: #8b4513;
+    transform: scale(1.05) rotate(1deg);
+    border-color: #a0522d;
+    box-shadow: 
+        0 10px 25px rgba(139, 69, 19, 0.4),
+        0 0 0 1px rgba(160, 82, 45, 0.2);
+}
+
+.gallery-item:hover .gallery-frame {
+    border-color: #a0522d;
+    box-shadow: inset 0 0 0 2px rgba(160, 82, 45, 0.5);
 }
 
 .gallery-item img {
@@ -374,16 +557,37 @@ section h2 {
     transition: transform 0.3s;
 }
 
-.gallery-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #2d2d2d;
-    color: #8b4513;
-    font-size: 14px;
-    text-align: center;
-    padding: 20px;
+.gallery-item:hover img {
+    transform: scale(1.1);
 }
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(139, 69, 19, 0.9));
+    color: white;
+    padding: 15px 10px;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+    font-size: 11px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+.gallery-item:nth-child(1) { animation-delay: 0.1s; }
+.gallery-item:nth-child(2) { animation-delay: 0.2s; }
+.gallery-item:nth-child(3) { animation-delay: 0.3s; }
+.gallery-item:nth-child(4) { animation-delay: 0.4s; }
+.gallery-item:nth-child(5) { animation-delay: 0.5s; }
+.gallery-item:nth-child(6) { animation-delay: 0.6s; }
 
 /* Акции */
 .promotions-grid {
@@ -401,6 +605,7 @@ section h2 {
     border: 1px solid #a0522d;
     position: relative;
     overflow: hidden;
+    animation: fadeInUp 0.8s ease-out;
 }
 
 .promo-card::before {
@@ -448,11 +653,15 @@ section h2 {
     border-radius: 2px;
     text-align: center;
     transition: all 0.3s;
+    animation: fadeInUp 0.8s ease-out both;
 }
 
 .loyalty-card:hover {
-    border-color: #8b4513;
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    border-color: #a0522d;
+    box-shadow: 
+        0 8px 20px rgba(139, 69, 19, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .loyalty-card h3 {
@@ -468,6 +677,10 @@ section h2 {
     font-size: 0.8em;
     line-height: 1.4;
 }
+
+.loyalty-card:nth-child(1) { animation-delay: 0.1s; }
+.loyalty-card:nth-child(2) { animation-delay: 0.2s; }
+.loyalty-card:nth-child(3) { animation-delay: 0.3s; }
 
 /* Контакты */
 .contact-info {
@@ -518,6 +731,25 @@ section h2 {
     color: #666;
     font-size: 0.8em;
     letter-spacing: 1px;
+}
+
+/* Заглушка для галереи */
+.gallery-placeholder {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background: #1a1a1a;
+    border: 2px dashed #8b4513;
+    border-radius: 5px;
+}
+
+.gallery-placeholder h3 {
+    color: #8b4513;
+    margin-bottom: 10px;
+}
+
+.gallery-placeholder p {
+    color: #999;
 }
 
 /* Адаптивность для мобилок */
@@ -607,6 +839,10 @@ section h2 {
     .gallery-modal img {
         max-height: 50vh;
     }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
 }
 
 @media (max-width: 480px) {
@@ -630,117 +866,4 @@ section h2 {
     .gallery-grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
-}
-
-/* Стили для галереи */
-.gallery-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(139, 69, 19, 0.9);
-    color: white;
-    padding: 10px;
-    transform: translateY(100%);
-    transition: transform 0.3s;
-    font-size: 12px;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.gallery-item:hover .gallery-overlay {
-    transform: translateY(0);
-}
-
-.gallery-placeholder {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 60px 20px;
-    background: #1a1a1a;
-    border: 2px dashed #8b4513;
-    border-radius: 5px;
-}
-
-.gallery-placeholder h3 {
-    color: #8b4513;
-    margin-bottom: 10px;
-}
-
-.gallery-placeholder p {
-    color: #999;
-}
-
-/* Стили для загрузки файлов */
-input[type="file"] {
-    padding: 10px;
-    background: #2d2d2d;
-    border: 1px solid #444;
-    border-radius: 3px;
-    color: #e0e0e0;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-input[type="file"]::file-selector-button {
-    background: #8b4513;
-    color: white;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-right: 10px;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-input[type="file"]::file-selector-button:hover {
-    background: #a0522d;
-}
-
-/* Стили для галереи */
-.gallery-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(139, 69, 19, 0.9);
-    color: white;
-    padding: 10px;
-    transform: translateY(100%);
-    transition: transform 0.3s;
-    font-size: 12px;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.gallery-item:hover .gallery-overlay {
-    transform: translateY(0);
-}
-
-.gallery-placeholder {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 60px 20px;
-    background: #1a1a1a;
-    border: 2px dashed #8b4513;
-    border-radius: 5px;
-}
-
-.gallery-placeholder h3 {
-    color: #8b4513;
-    margin-bottom: 10px;
-}
-
-.gallery-placeholder p {
-    color: #999;
-}
-
-/* Информация о фото в админке */
-.photo-info {
-    font-size: 11px;
-    color: #999;
-    margin-top: 5px;
 }
