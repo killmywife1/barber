@@ -2,7 +2,7 @@
 const DEMO_GALLERY = [
     {
         id: 1,
-        title: "какая нибудь хуйня потом скажешь",
+        title: "Пример фото1",
         url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMUExQTFBIi8+CjxwYXRoIGQ9Ik0xNzUgMjI1TDIyNSAxNzVMMjc1IDIyNUgyNzVWMjc1SDIyNVYyMjVIMTc1WiIgZmlsbD0iIzhCNDUxMyIvPgo8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNzUiIHI9IjI1IiBmaWxsPSIjOEU0RTVBIi8+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI3NSIgcj0iMTUiIGZpbGw9IiM4QjQ1MTMiLz4KPHN2Zz4="
     },
     {
@@ -185,4 +185,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 
